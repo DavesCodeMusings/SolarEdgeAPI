@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# api-call.py -- a sample script to fetch inverter output from SolarEdge API
+# daily-output.py -- a sample script to fetch inverter output from SolarEdge API
 # 
 # (c)2020 David Horton
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
