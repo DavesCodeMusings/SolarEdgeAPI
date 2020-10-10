@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!--
+  Note: This example will fail because of Cross-Origin Resource Sharing (CORS)
+  restrictions in the browser. You can make it work by installing an extension
+  like CORS Everywhere (CorsE) for Firefox.
+-->
+<html>
+
+<head>
+  <title>SolarEdge Status</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+
+    // SolarEdge site name and API key for your installation. You must generate the
+    // API key from the SolarEdge monitoring web site. See the API guide for details.
+    // https://www.solaredge.com/sites/default/files/se_monitoring_api.pdf
+    const SITE = "";
+    const API_KEY = "";
+
+    // Make an async call to the API url and pass the parsed JSON to the callback. 
+    function apiGet(url, callback) {
+      alert(url);
+      document.body.style.cursor = 'wait';
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+          alert(this.status);
+          if (this.status === 200) {
+            callback(JSON.parse(this.responseText));
+          }
+          else {
+            alert(`Error communicating with server.\n${this.responseText}`);
+          }
+          document.body.style.cursor = 'default';
+        }
+      };
+      xhttp.open('GET', url, true);
+      xhttp.send();
+    }
+
+    function updateSite() {
+      document.getElementById("site").innerHTML = SITE;
+    }
+
+    function updateOverview(siteData) {
+      document.getElementById('inverter-output').innerHTML = siteData.overview.currentPower.power;
+      document.getElementById('last-update').innerHTML = siteData.overview.lastUpdateTime;
+    }
+
+    function getOverview() {
+      apiGet(`https://monitoringapi.solaredge.com/site/${SITE}/overview.json?api_key=${API_KEY}`, updateOverview);
+    }
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+
+<body onload="updateSite(); getOverview();">
+  <h1>System Status for SolarEdge Site <span id="site"></span></h1>
+  <table>
+    <tr>
+      <td>Power Output:</td>
+      <td><span id="inverter-output"><i>gathering data...</i></span></td>
+    </tr>
+    <tr>
+      <td>Last Update:</td>
+      <td><span id="last-update"><i>gathering data...</i></span></td>
+    </tr>
+  </table>
+  <button onclick="getOverview();" type="button">Refresh</button>
+</body>
+
+</html>
