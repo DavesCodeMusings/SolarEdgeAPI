@@ -11,6 +11,7 @@ See https://www.solaredge.com/sites/default/files/se_monitoring_api.pdf
 * daily-output.sh -- Shell script with 'curl' and JSON parser 'jq'
 
 All files (c)2020 David Horton
+
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
