@@ -8,8 +8,8 @@ const https = require("https");
 
 // Fill in the two values below.
 // See https://www.solaredge.com/sites/default/files/se_monitoring_api.pdf
-const SITE = ""
-const API_KEY = ""
+const SITE = "1844662"
+const API_KEY = "6VU8TOB51R2HFW8P6QOH9HL4LW645XM7"
 
 // Make a call to the API.
 let request = https.get(`https://monitoringapi.solaredge.com/site/${SITE}/overview.json?api_key=${API_KEY}`, (response) => {
@@ -21,9 +21,14 @@ let request = https.get(`https://monitoringapi.solaredge.com/site/${SITE}/overvi
   });
 
   // When response is complete, show the results.
-  response.on("end", (err) => {
-    let data = JSON.parse(buffer);
-    console.log(`${data.overview.lastUpdateTime} ${data.overview.lastDayData.energy}`);
+  response.on('end', (err) => {
+    if (!err && response.statusCode == 200) {
+      let data = JSON.parse(buffer);
+      console.log(`${data.overview.lastUpdateTime} ${data.overview.lastDayData.energy}`);
+    }
+    else {
+      console.error(`ERROR: ${err}`);
+    }
   });
 
   // Complain if there was an error.
