@@ -2,6 +2,7 @@
 
 /**
  * Calculate sunrise and sunset times for the present day. Useful for not polling the inverter API when it's dark out.
+ * Emphasis is on readbility and understanding of the program more than hyperaccurate sunrise/sunset times.
  */
 
 // Adjust this for your geographic location.
