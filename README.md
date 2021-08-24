@@ -10,6 +10,6 @@ See https://www.solaredge.com/sites/default/files/se_monitoring_api.pdf
 * daily-output.py -- Python 3
 * daily-output.sh -- Shell script with 'curl' and JSON parser 'jq'
 
-There is also `log-output.js` that takes things further by fetching the present output of the inverter, storing the value in a SQLite database and publishing to MQTT. By scheduling `log-output.js` in crontab, you can establish a history of inverter output in the databse, as well as providing the most recent reading to your home automation system through MQTT.
+`log-output.js` takes things further by fetching the present output of the inverter, storing the value in a SQLite database and publishing to MQTT. By scheduling `log-output.js` in crontab, you can establish a history of inverter output in the databse, as well as providing the most recent reading to your home automation system through MQTT.
 
 `daylight.js` will calculate sunrise and sunset times and tell you if the sun is up. It can help you not poll the API in the middle of the night. Run it in script mode, with a -s commandline argument, to get JSON output.
